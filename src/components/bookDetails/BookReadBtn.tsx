@@ -3,12 +3,23 @@
 import IBook from "@/types/book.type";
 import React, { useContext } from "react";
 import { BookContext } from "../contexts/BookContext";
+import { Flip, toast } from "react-toastify";
 
 const BookReadBtn = ({ book }: { book: IBook }) => {
   const { readBooks, setReadBooks } = useContext(BookContext);
   const handleReadBtn = () => {
     setReadBooks([...readBooks, book]);
-    console.log("book readed");
+    toast.success("Added to Read", {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+      transition: Flip,
+    });
   };
   return (
     <button
